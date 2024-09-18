@@ -1,0 +1,303 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Details
+  fields:
+    - name: category
+      type: String!
+    - name: organization
+      type: String!
+  graphql:
+    typeName: Details
+    inputTypeName: DetailsInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Details
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Details
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - category
+          - organization
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Award
+  fields:
+    - name: awardName
+      type: String!
+    - name: details
+      type: Details!
+    - name: year
+      type: Number!
+  graphql:
+    typeName: Award
+    inputTypeName: AwardInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Award
+      fieldMapping:
+        awardName:
+          column:
+            name: award_name
+        details:
+          column:
+            name: details
+        year:
+          column:
+            name: year
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Award
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - awardName
+          - details
+          - year
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Country
+  fields:
+    - name: city
+      type: String!
+    - name: state
+      type: String!
+  graphql:
+    typeName: Country
+    inputTypeName: CountryInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Country
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Country
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - city
+          - state
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Birth
+  fields:
+    - name: country
+      type: Country!
+    - name: year
+      type: Number!
+  graphql:
+    typeName: Birth
+    inputTypeName: BirthInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Birth
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Birth
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - country
+          - year
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Laureate
+  fields:
+    - name: awards
+      type: "[Award!]!"
+    - name: birth
+      type: Birth!
+    - name: firstname
+      type: String!
+    - name: id
+      type: String!
+    - name: motivation
+      type: String!
+    - name: share
+      type: String!
+    - name: surname
+      type: String!
+  graphql:
+    typeName: Laureate
+    inputTypeName: LaureateInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Laureate
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Laureate
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - awards
+          - birth
+          - firstname
+          - id
+          - motivation
+          - share
+          - surname
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: TestNobelLaureates
+  fields:
+    - name: category
+      type: String!
+    - name: id
+      type: String!
+    - name: laureates
+      type: "[Laureate!]!"
+    - name: overallMotivation
+      type: String!
+    - name: prizeId
+      type: Number!
+    - name: year
+      type: Number!
+  graphql:
+    typeName: TestNobelLaureates
+    inputTypeName: TestNobelLaureatesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: TestNobelLaureates
+      fieldMapping:
+        category:
+          column:
+            name: category
+        id:
+          column:
+            name: id
+        laureates:
+          column:
+            name: laureates
+        overallMotivation:
+          column:
+            name: overallMotivation
+        prizeId:
+          column:
+            name: prize_id
+        year:
+          column:
+            name: year
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: TestNobelLaureates
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - category
+          - id
+          - laureates
+          - overallMotivation
+          - prizeId
+          - year
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: TestNobelLaureatesBoolExp
+  operand:
+    object:
+      type: TestNobelLaureates
+      comparableFields:
+        - fieldName: category
+          booleanExpressionType: StringBoolExp
+        - fieldName: id
+          booleanExpressionType: StringBoolExp
+        - fieldName: overallMotivation
+          booleanExpressionType: StringBoolExp
+        - fieldName: prizeId
+          booleanExpressionType: NumberBoolExp
+        - fieldName: year
+          booleanExpressionType: NumberBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: TestNobelLaureatesBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: TestNobelLaureates
+  objectType: TestNobelLaureates
+  source:
+    dataConnectorName: azure_cosmos
+    collection: TestNobelLaureates
+  filterExpressionType: TestNobelLaureatesBoolExp
+  orderableFields:
+    - fieldName: category
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: overallMotivation
+      orderByDirections:
+        enableAll: true
+    - fieldName: prizeId
+      orderByDirections:
+        enableAll: true
+    - fieldName: year
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: testNobelLaureates
+    selectUniques: []
+    orderByExpressionType: TestNobelLaureatesOrderBy
+    filterInputTypeName: TestNobelLaureatesFilterInput
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: TestNobelLaureates
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

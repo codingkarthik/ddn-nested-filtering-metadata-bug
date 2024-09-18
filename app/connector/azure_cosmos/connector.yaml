@@ -1,0 +1,20 @@
+kind: Connector
+version: v2
+definition:
+  name: azure_cosmos
+  subgraph: app
+  source: hasura/azure-cosmos:v0.2.0
+  context: .
+  envMapping:
+    AZURE_COSMOS_DB_NAME:
+      fromEnv: APP_AZURE_COSMOS_AZURE_COSMOS_DB_NAME
+    AZURE_COSMOS_ENDPOINT:
+      fromEnv: APP_AZURE_COSMOS_AZURE_COSMOS_ENDPOINT
+    AZURE_COSMOS_KEY:
+      fromEnv: APP_AZURE_COSMOS_AZURE_COSMOS_KEY
+    HASURA_SERVICE_TOKEN_SECRET:
+      fromEnv: APP_AZURE_COSMOS_HASURA_SERVICE_TOKEN_SECRET
+    OTEL_EXPORTER_OTLP_TRACES_ENDPOINT:
+      fromEnv: APP_AZURE_COSMOS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+    OTEL_SERVICE_NAME:
+      fromEnv: APP_AZURE_COSMOS_OTEL_SERVICE_NAME

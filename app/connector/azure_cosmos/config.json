@@ -1,0 +1,955 @@
+{
+  "version": 2,
+  "connection": {
+    "endpoint": "https://test-azure-cosmos-one.documents.azure.com:443/",
+    "authentication": {
+      "type": "Key",
+      "fromEnvVar": "AZURE_COSMOS_KEY"
+    },
+    "databaseName": "azure-cosmos-one"
+  },
+  "schema": {
+    "collections": {
+      "Test": {
+        "description": null,
+        "arguments": [],
+        "resultType": {
+          "type": "named",
+          "name": "Test",
+          "kind": "object"
+        }
+      },
+      "scores": {
+        "description": null,
+        "arguments": [],
+        "resultType": {
+          "type": "named",
+          "name": "Scores",
+          "kind": "object"
+        }
+      },
+      "TestNobelLaureates": {
+        "description": null,
+        "arguments": [],
+        "resultType": {
+          "type": "named",
+          "name": "TestNobelLaureates",
+          "kind": "object"
+        }
+      },
+      "users": {
+        "description": null,
+        "arguments": [],
+        "resultType": {
+          "type": "named",
+          "name": "Users",
+          "kind": "object"
+        }
+      }
+    },
+    "objectTypes": {
+      "Test": {
+        "description": null,
+        "properties": {
+          "level1": {
+            "propertyName": "level1",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Level1",
+                "kind": "object"
+              }
+            }
+          },
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Level1": {
+        "description": null,
+        "properties": {
+          "level2": {
+            "propertyName": "level2",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Level2",
+                "kind": "object"
+              }
+            }
+          }
+        }
+      },
+      "Level2": {
+        "description": null,
+        "properties": {
+          "level3": {
+            "propertyName": "level3",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Level3",
+                "kind": "object"
+              }
+            }
+          }
+        }
+      },
+      "Level3": {
+        "description": null,
+        "properties": {
+          "level4": {
+            "propertyName": "level4",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Level4",
+                "kind": "object"
+              }
+            }
+          }
+        }
+      },
+      "Level4": {
+        "description": null,
+        "properties": {
+          "level5": {
+            "propertyName": "level5",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Level5",
+                "kind": "object"
+              }
+            }
+          }
+        }
+      },
+      "Level5": {
+        "description": null,
+        "properties": {
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "name": {
+            "propertyName": "name",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "color": {
+            "propertyName": "color",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "type": {
+            "propertyName": "type",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "hex": {
+            "propertyName": "hex",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "origin": {
+            "propertyName": "origin",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "wheels": {
+            "propertyName": "wheels",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "beats": {
+            "propertyName": "beats",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "symbol": {
+            "propertyName": "symbol",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "composition": {
+            "propertyName": "composition",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Scores": {
+        "description": null,
+        "properties": {
+          "sport": {
+            "propertyName": "sport",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "timestamp": {
+            "propertyName": "timestamp",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "player_id": {
+            "propertyName": "player_id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "score": {
+            "propertyName": "score",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "TestNobelLaureates": {
+        "description": null,
+        "properties": {
+          "year": {
+            "propertyName": "year",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "category": {
+            "propertyName": "category",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "laureates": {
+            "propertyName": "laureates",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Laureate",
+                "kind": "object"
+              }
+            }
+          },
+          "prize_id": {
+            "propertyName": "prize_id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "overallMotivation": {
+            "propertyName": "overallMotivation",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Laureate": {
+        "description": null,
+        "properties": {
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "firstname": {
+            "propertyName": "firstname",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "surname": {
+            "propertyName": "surname",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "motivation": {
+            "propertyName": "motivation",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "share": {
+            "propertyName": "share",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "birth": {
+            "propertyName": "birth",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Birth",
+              "kind": "object"
+            }
+          },
+          "awards": {
+            "propertyName": "awards",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Award",
+                "kind": "object"
+              }
+            }
+          }
+        }
+      },
+      "Award": {
+        "description": null,
+        "properties": {
+          "award_name": {
+            "propertyName": "award_name",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "year": {
+            "propertyName": "year",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "details": {
+            "propertyName": "details",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Details",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "Details": {
+        "description": null,
+        "properties": {
+          "category": {
+            "propertyName": "category",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "organization": {
+            "propertyName": "organization",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Birth": {
+        "description": null,
+        "properties": {
+          "year": {
+            "propertyName": "year",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "country": {
+            "propertyName": "country",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Country",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "Country": {
+        "description": null,
+        "properties": {
+          "city": {
+            "propertyName": "city",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "state": {
+            "propertyName": "state",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Users": {
+        "description": null,
+        "properties": {
+          "status": {
+            "propertyName": "status",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "name": {
+            "propertyName": "name",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Name",
+              "kind": "object"
+            }
+          },
+          "username": {
+            "propertyName": "username",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "password": {
+            "propertyName": "password",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "emails": {
+            "propertyName": "emails",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "String",
+                "kind": "scalar"
+              }
+            }
+          },
+          "phoneNumber": {
+            "propertyName": "phoneNumber",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "location": {
+            "propertyName": "location",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Location",
+              "kind": "object"
+            }
+          },
+          "website": {
+            "propertyName": "website",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "domain": {
+            "propertyName": "domain",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "job": {
+            "propertyName": "job",
+            "description": null,
+            "type": {
+              "type": "array",
+              "elementType": {
+                "type": "named",
+                "name": "Job",
+                "kind": "object"
+              }
+            }
+          },
+          "creditCard": {
+            "propertyName": "creditCard",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "CreditCard",
+              "kind": "object"
+            }
+          },
+          "a": {
+            "propertyName": "a",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "A",
+              "kind": "object"
+            }
+          },
+          "uuid": {
+            "propertyName": "uuid",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "objectId": {
+            "propertyName": "objectId",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "id": {
+            "propertyName": "id",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "A": {
+        "description": null,
+        "properties": {
+          "b": {
+            "propertyName": "b",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "B",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "B": {
+        "description": null,
+        "properties": {
+          "c": {
+            "propertyName": "c",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "C",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "C": {
+        "description": null,
+        "properties": {
+          "d": {
+            "propertyName": "d",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Boolean",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "CreditCard": {
+        "description": null,
+        "properties": {
+          "number": {
+            "propertyName": "number",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "cvv": {
+            "propertyName": "cvv",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "issuer": {
+            "propertyName": "issuer",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Job": {
+        "description": null,
+        "properties": {
+          "title": {
+            "propertyName": "title",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "descriptor": {
+            "propertyName": "descriptor",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "area": {
+            "propertyName": "area",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "type": {
+            "propertyName": "type",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "company": {
+            "propertyName": "company",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Company",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "Company": {
+        "description": null,
+        "properties": {
+          "established": {
+            "propertyName": "established",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "name": {
+            "propertyName": "name",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Location": {
+        "description": null,
+        "properties": {
+          "street": {
+            "propertyName": "street",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "city": {
+            "propertyName": "city",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "state": {
+            "propertyName": "state",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "country": {
+            "propertyName": "country",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "zip": {
+            "propertyName": "zip",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "coordinates": {
+            "propertyName": "coordinates",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Coordinates",
+              "kind": "object"
+            }
+          }
+        }
+      },
+      "Coordinates": {
+        "description": null,
+        "properties": {
+          "latitude": {
+            "propertyName": "latitude",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          },
+          "longitude": {
+            "propertyName": "longitude",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "Number",
+              "kind": "scalar"
+            }
+          }
+        }
+      },
+      "Name": {
+        "description": null,
+        "properties": {
+          "first": {
+            "propertyName": "first",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "middle": {
+            "propertyName": "middle",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          },
+          "last": {
+            "propertyName": "last",
+            "description": null,
+            "type": {
+              "type": "named",
+              "name": "String",
+              "kind": "scalar"
+            }
+          }
+        }
+      }
+    },
+    "scalarTypes": {
+      "Integer": {
+        "type": "named",
+        "name": "Integer",
+        "kind": "scalar"
+      },
+      "Number": {
+        "type": "named",
+        "name": "Number",
+        "kind": "scalar"
+      },
+      "Boolean": {
+        "type": "named",
+        "name": "Boolean",
+        "kind": "scalar"
+      },
+      "String": {
+        "type": "named",
+        "name": "String",
+        "kind": "scalar"
+      }
+    }
+  }
+}

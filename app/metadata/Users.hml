@@ -1,0 +1,601 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: C
+  fields:
+    - name: d
+      type: Boolean!
+  graphql:
+    typeName: C
+    inputTypeName: CInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: C
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: C
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - d
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: B
+  fields:
+    - name: c
+      type: C!
+  graphql:
+    typeName: B
+    inputTypeName: BInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: B
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: B
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - c
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: A
+  fields:
+    - name: b
+      type: B!
+  graphql:
+    typeName: A
+    inputTypeName: AInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: A
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: A
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - b
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: CreditCard
+  fields:
+    - name: cvv
+      type: String!
+    - name: issuer
+      type: String!
+    - name: number
+      type: String!
+  graphql:
+    typeName: CreditCard
+    inputTypeName: CreditCardInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: CreditCard
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: CreditCard
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - cvv
+          - issuer
+          - number
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Company
+  fields:
+    - name: established
+      type: Number!
+    - name: name
+      type: String!
+  graphql:
+    typeName: Company
+    inputTypeName: CompanyInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Company
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Company
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - established
+          - name
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Job
+  fields:
+    - name: area
+      type: String!
+    - name: company
+      type: Company!
+    - name: descriptor
+      type: String!
+    - name: title
+      type: String!
+    - name: type
+      type: String!
+  graphql:
+    typeName: Job
+    inputTypeName: JobInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Job
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Job
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - area
+          - company
+          - descriptor
+          - title
+          - type
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Coordinates
+  fields:
+    - name: latitude
+      type: Number!
+    - name: longitude
+      type: Number!
+  graphql:
+    typeName: Coordinates
+    inputTypeName: CoordinatesInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Coordinates
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Coordinates
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - latitude
+          - longitude
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Location
+  fields:
+    - name: city
+      type: String!
+    - name: coordinates
+      type: Coordinates!
+    - name: country
+      type: String!
+    - name: state
+      type: String!
+    - name: street
+      type: String!
+    - name: zip
+      type: String!
+  graphql:
+    typeName: Location
+    inputTypeName: LocationInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Location
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Location
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - city
+          - coordinates
+          - country
+          - state
+          - street
+          - zip
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Name
+  fields:
+    - name: first
+      type: String!
+    - name: last
+      type: String!
+    - name: middle
+      type: String!
+  graphql:
+    typeName: Name
+    inputTypeName: NameInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Name
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - first
+          - last
+          - middle
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Users
+  fields:
+    - name: a
+      type: A!
+    - name: creditCard
+      type: CreditCard!
+    - name: domain
+      type: String!
+    - name: emails
+      type: "[String!]!"
+    - name: id
+      type: String!
+    - name: job
+      type: "[Job!]!"
+    - name: location
+      type: Location!
+    - name: name
+      type: Name!
+    - name: objectId
+      type: String!
+    - name: password
+      type: String!
+    - name: phoneNumber
+      type: String!
+    - name: status
+      type: String!
+    - name: username
+      type: String!
+    - name: uuid
+      type: String!
+    - name: website
+      type: String!
+  graphql:
+    typeName: Users
+    inputTypeName: UsersInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Users
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Users
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - a
+          - creditCard
+          - domain
+          - emails
+          - id
+          - job
+          - location
+          - name
+          - objectId
+          - password
+          - phoneNumber
+          - status
+          - username
+          - uuid
+          - website
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: CBoolExp
+  operand:
+    object:
+      type: C
+      comparableFields:
+        - fieldName: d
+          booleanExpressionType: BooleanBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: CBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: BBoolExp
+  operand:
+    object:
+      type: B
+      comparableFields:
+        - fieldName: c
+          booleanExpressionType: CBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: BBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ABoolExp
+  operand:
+    object:
+      type: A
+      comparableFields:
+        - fieldName: b
+          booleanExpressionType: BBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ABoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: CreditCardBoolExp
+  operand:
+    object:
+      type: CreditCard
+      comparableFields:
+        - fieldName: cvv
+          booleanExpressionType: StringBoolExp
+        - fieldName: issuer
+          booleanExpressionType: StringBoolExp
+        - fieldName: number
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: CreditCardBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: CoordinatesBoolExp
+  operand:
+    object:
+      type: Coordinates
+      comparableFields:
+        - fieldName: latitude
+          booleanExpressionType: NumberBoolExp
+        - fieldName: longitude
+          booleanExpressionType: NumberBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: CoordinatesBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: LocationBoolExp
+  operand:
+    object:
+      type: Location
+      comparableFields:
+        - fieldName: city
+          booleanExpressionType: StringBoolExp
+        - fieldName: coordinates
+          booleanExpressionType: CoordinatesBoolExp
+        - fieldName: country
+          booleanExpressionType: StringBoolExp
+        - fieldName: state
+          booleanExpressionType: StringBoolExp
+        - fieldName: street
+          booleanExpressionType: StringBoolExp
+        - fieldName: zip
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: LocationBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: NameBoolExp
+  operand:
+    object:
+      type: Name
+      comparableFields:
+        - fieldName: first
+          booleanExpressionType: StringBoolExp
+        - fieldName: last
+          booleanExpressionType: StringBoolExp
+        - fieldName: middle
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: NameBoolExp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: UsersBoolExp
+  operand:
+    object:
+      type: Users
+      comparableFields:
+        - fieldName: a
+          booleanExpressionType: ABoolExp
+        - fieldName: creditCard
+          booleanExpressionType: CreditCardBoolExp
+        - fieldName: domain
+          booleanExpressionType: StringBoolExp
+        - fieldName: id
+          booleanExpressionType: StringBoolExp
+        - fieldName: location
+          booleanExpressionType: LocationBoolExp
+        - fieldName: name
+          booleanExpressionType: NameBoolExp
+        - fieldName: objectId
+          booleanExpressionType: StringBoolExp
+        - fieldName: password
+          booleanExpressionType: StringBoolExp
+        - fieldName: phoneNumber
+          booleanExpressionType: StringBoolExp
+        - fieldName: status
+          booleanExpressionType: StringBoolExp
+        - fieldName: username
+          booleanExpressionType: StringBoolExp
+        - fieldName: uuid
+          booleanExpressionType: StringBoolExp
+        - fieldName: website
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: UsersBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Users
+  objectType: Users
+  source:
+    dataConnectorName: azure_cosmos
+    collection: users
+  filterExpressionType: UsersBoolExp
+  orderableFields:
+    - fieldName: domain
+      orderByDirections:
+        enableAll: true
+    - fieldName: emails
+      orderByDirections:
+        enableAll: true
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: objectId
+      orderByDirections:
+        enableAll: true
+    - fieldName: password
+      orderByDirections:
+        enableAll: true
+    - fieldName: phoneNumber
+      orderByDirections:
+        enableAll: true
+    - fieldName: status
+      orderByDirections:
+        enableAll: true
+    - fieldName: username
+      orderByDirections:
+        enableAll: true
+    - fieldName: uuid
+      orderByDirections:
+        enableAll: true
+    - fieldName: website
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: users
+    selectUniques: []
+    orderByExpressionType: UsersOrderBy
+    filterInputTypeName: UsersFilterInput
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Users
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

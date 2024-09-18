@@ -1,0 +1,124 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Scores
+  fields:
+    - name: id
+      type: String!
+    - name: playerId
+      type: Number!
+    - name: score
+      type: Number!
+    - name: sport
+      type: String!
+    - name: timestamp
+      type: String!
+  graphql:
+    typeName: Scores
+    inputTypeName: ScoresInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Scores
+      fieldMapping:
+        id:
+          column:
+            name: id
+        playerId:
+          column:
+            name: player_id
+        score:
+          column:
+            name: score
+        sport:
+          column:
+            name: sport
+        timestamp:
+          column:
+            name: timestamp
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Scores
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - id
+          - playerId
+          - score
+          - sport
+          - timestamp
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: ScoresBoolExp
+  operand:
+    object:
+      type: Scores
+      comparableFields:
+        - fieldName: id
+          booleanExpressionType: StringBoolExp
+        - fieldName: playerId
+          booleanExpressionType: NumberBoolExp
+        - fieldName: score
+          booleanExpressionType: NumberBoolExp
+        - fieldName: sport
+          booleanExpressionType: StringBoolExp
+        - fieldName: timestamp
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: ScoresBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Scores
+  objectType: Scores
+  source:
+    dataConnectorName: azure_cosmos
+    collection: scores
+  filterExpressionType: ScoresBoolExp
+  orderableFields:
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+    - fieldName: playerId
+      orderByDirections:
+        enableAll: true
+    - fieldName: score
+      orderByDirections:
+        enableAll: true
+    - fieldName: sport
+      orderByDirections:
+        enableAll: true
+    - fieldName: timestamp
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: scores
+    selectUniques: []
+    orderByExpressionType: ScoresOrderBy
+    filterInputTypeName: ScoresFilterInput
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Scores
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

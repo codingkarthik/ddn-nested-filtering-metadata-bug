@@ -1,0 +1,612 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: azure_cosmos
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_AZURE_COSMOS_READ_URL
+      write:
+        valueFromEnv: APP_AZURE_COSMOS_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_AZURE_COSMOS_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        Boolean:
+          aggregate_functions:
+            bool_and:
+              result_type:
+                type: named
+                name: Boolean
+            bool_not:
+              result_type:
+                type: named
+                name: Boolean
+            bool_or:
+              result_type:
+                type: named
+                name: Boolean
+          comparison_operators:
+            eq:
+              type: equal
+            neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Boolean
+        Integer:
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Integer
+            count:
+              result_type:
+                type: named
+                name: Integer
+            max:
+              result_type:
+                type: named
+                name: Integer
+            min:
+              result_type:
+                type: named
+                name: Integer
+            sum:
+              result_type:
+                type: named
+                name: Integer
+          comparison_operators:
+            eq:
+              type: equal
+            gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Integer
+            gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Integer
+            lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Integer
+            lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Integer
+            neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Integer
+        Number:
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Number
+            count:
+              result_type:
+                type: named
+                name: Number
+            max:
+              result_type:
+                type: named
+                name: Number
+            min:
+              result_type:
+                type: named
+                name: Number
+            sum:
+              result_type:
+                type: named
+                name: Number
+          comparison_operators:
+            eq:
+              type: equal
+            gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Number
+            gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Number
+            lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Number
+            lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Number
+            neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Number
+        String:
+          aggregate_functions: {}
+          comparison_operators:
+            contains:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            endswith:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            eq:
+              type: equal
+            gt:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            gte:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            lt:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            lte:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            neq:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            regexmatch:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            startswith:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+      object_types:
+        A:
+          fields:
+            b:
+              type:
+                type: named
+                name: B
+        Award:
+          fields:
+            award_name:
+              type:
+                type: named
+                name: String
+            details:
+              type:
+                type: named
+                name: Details
+            year:
+              type:
+                type: named
+                name: Number
+        B:
+          fields:
+            c:
+              type:
+                type: named
+                name: C
+        Birth:
+          fields:
+            country:
+              type:
+                type: named
+                name: Country
+            year:
+              type:
+                type: named
+                name: Number
+        C:
+          fields:
+            d:
+              type:
+                type: named
+                name: Boolean
+        Company:
+          fields:
+            established:
+              type:
+                type: named
+                name: Number
+            name:
+              type:
+                type: named
+                name: String
+        Coordinates:
+          fields:
+            latitude:
+              type:
+                type: named
+                name: Number
+            longitude:
+              type:
+                type: named
+                name: Number
+        Country:
+          fields:
+            city:
+              type:
+                type: named
+                name: String
+            state:
+              type:
+                type: named
+                name: String
+        CreditCard:
+          fields:
+            cvv:
+              type:
+                type: named
+                name: String
+            issuer:
+              type:
+                type: named
+                name: String
+            number:
+              type:
+                type: named
+                name: String
+        Details:
+          fields:
+            category:
+              type:
+                type: named
+                name: String
+            organization:
+              type:
+                type: named
+                name: String
+        Job:
+          fields:
+            area:
+              type:
+                type: named
+                name: String
+            company:
+              type:
+                type: named
+                name: Company
+            descriptor:
+              type:
+                type: named
+                name: String
+            title:
+              type:
+                type: named
+                name: String
+            type:
+              type:
+                type: named
+                name: String
+        Laureate:
+          fields:
+            awards:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Award
+            birth:
+              type:
+                type: named
+                name: Birth
+            firstname:
+              type:
+                type: named
+                name: String
+            id:
+              type:
+                type: named
+                name: String
+            motivation:
+              type:
+                type: named
+                name: String
+            share:
+              type:
+                type: named
+                name: String
+            surname:
+              type:
+                type: named
+                name: String
+        Level1:
+          fields:
+            level2:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Level2
+        Level2:
+          fields:
+            level3:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Level3
+        Level3:
+          fields:
+            level4:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Level4
+        Level4:
+          fields:
+            level5:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Level5
+        Level5:
+          fields:
+            beats:
+              type:
+                type: named
+                name: String
+            color:
+              type:
+                type: named
+                name: String
+            composition:
+              type:
+                type: named
+                name: String
+            hex:
+              type:
+                type: named
+                name: String
+            id:
+              type:
+                type: named
+                name: Number
+            name:
+              type:
+                type: named
+                name: String
+            origin:
+              type:
+                type: named
+                name: String
+            symbol:
+              type:
+                type: named
+                name: String
+            type:
+              type:
+                type: named
+                name: String
+            wheels:
+              type:
+                type: named
+                name: Number
+        Location:
+          fields:
+            city:
+              type:
+                type: named
+                name: String
+            coordinates:
+              type:
+                type: named
+                name: Coordinates
+            country:
+              type:
+                type: named
+                name: String
+            state:
+              type:
+                type: named
+                name: String
+            street:
+              type:
+                type: named
+                name: String
+            zip:
+              type:
+                type: named
+                name: String
+        Name:
+          fields:
+            first:
+              type:
+                type: named
+                name: String
+            last:
+              type:
+                type: named
+                name: String
+            middle:
+              type:
+                type: named
+                name: String
+        Scores:
+          fields:
+            id:
+              type:
+                type: named
+                name: String
+            player_id:
+              type:
+                type: named
+                name: Number
+            score:
+              type:
+                type: named
+                name: Number
+            sport:
+              type:
+                type: named
+                name: String
+            timestamp:
+              type:
+                type: named
+                name: String
+        Test:
+          fields:
+            id:
+              type:
+                type: named
+                name: String
+            level1:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Level1
+        TestNobelLaureates:
+          fields:
+            category:
+              type:
+                type: named
+                name: String
+            id:
+              type:
+                type: named
+                name: String
+            laureates:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Laureate
+            overallMotivation:
+              type:
+                type: named
+                name: String
+            prize_id:
+              type:
+                type: named
+                name: Number
+            year:
+              type:
+                type: named
+                name: Number
+        Users:
+          fields:
+            a:
+              type:
+                type: named
+                name: A
+            creditCard:
+              type:
+                type: named
+                name: CreditCard
+            domain:
+              type:
+                type: named
+                name: String
+            emails:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: String
+            id:
+              type:
+                type: named
+                name: String
+            job:
+              type:
+                type: array
+                element_type:
+                  type: named
+                  name: Job
+            location:
+              type:
+                type: named
+                name: Location
+            name:
+              type:
+                type: named
+                name: Name
+            objectId:
+              type:
+                type: named
+                name: String
+            password:
+              type:
+                type: named
+                name: String
+            phoneNumber:
+              type:
+                type: named
+                name: String
+            status:
+              type:
+                type: named
+                name: String
+            username:
+              type:
+                type: named
+                name: String
+            uuid:
+              type:
+                type: named
+                name: String
+            website:
+              type:
+                type: named
+                name: String
+      collections:
+        - name: Test
+          arguments: {}
+          type: Test
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: scores
+          arguments: {}
+          type: Scores
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: TestNobelLaureates
+          arguments: {}
+          type: TestNobelLaureates
+          uniqueness_constraints: {}
+          foreign_keys: {}
+        - name: users
+          arguments: {}
+          type: Users
+          uniqueness_constraints: {}
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          nested_fields:
+            filter_by: {}
+        mutation: {}

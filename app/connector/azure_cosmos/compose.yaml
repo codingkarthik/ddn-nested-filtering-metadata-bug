@@ -1,0 +1,22 @@
+services:
+  app_azure_cosmos:
+    build:
+      context: .
+      dockerfile_inline: |-
+        FROM ghcr.io/hasura/ndc-azure-cosmos:v0.2.0
+        COPY ./ /etc/connector
+    develop: {}
+    environment:
+      AZURE_COSMOS_DB_NAME: $APP_AZURE_COSMOS_AZURE_COSMOS_DB_NAME
+      AZURE_COSMOS_ENDPOINT: $APP_AZURE_COSMOS_AZURE_COSMOS_ENDPOINT
+      AZURE_COSMOS_KEY: $APP_AZURE_COSMOS_AZURE_COSMOS_KEY
+      HASURA_SERVICE_TOKEN_SECRET: $APP_AZURE_COSMOS_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: $APP_AZURE_COSMOS_OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_AZURE_COSMOS_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev=host-gateway
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "4956"
+        protocol: tcp

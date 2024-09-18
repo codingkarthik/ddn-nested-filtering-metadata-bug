@@ -1,0 +1,236 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Level5
+  fields:
+    - name: beats
+      type: String!
+    - name: color
+      type: String!
+    - name: composition
+      type: String!
+    - name: hex
+      type: String!
+    - name: id
+      type: Number!
+    - name: name
+      type: String!
+    - name: origin
+      type: String!
+    - name: symbol
+      type: String!
+    - name: type
+      type: String!
+    - name: wheels
+      type: Number!
+  graphql:
+    typeName: Level5
+    inputTypeName: Level5Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Level5
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Level5
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - beats
+          - color
+          - composition
+          - hex
+          - id
+          - name
+          - origin
+          - symbol
+          - type
+          - wheels
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Level4
+  fields:
+    - name: level5
+      type: "[Level5!]!"
+  graphql:
+    typeName: Level4
+    inputTypeName: Level4Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Level4
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Level4
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - level5
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Level3
+  fields:
+    - name: level4
+      type: "[Level4!]!"
+  graphql:
+    typeName: Level3
+    inputTypeName: Level3Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Level3
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Level3
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - level4
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Level2
+  fields:
+    - name: level3
+      type: "[Level3!]!"
+  graphql:
+    typeName: Level2
+    inputTypeName: Level2Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Level2
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Level2
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - level3
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Level1
+  fields:
+    - name: level2
+      type: "[Level2!]!"
+  graphql:
+    typeName: Level1
+    inputTypeName: Level1Input
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Level1
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Level1
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - level2
+
+---
+kind: ObjectType
+version: v1
+definition:
+  name: Test
+  fields:
+    - name: id
+      type: String!
+    - name: level1
+      type: "[Level1!]!"
+  graphql:
+    typeName: Test
+    inputTypeName: TestInput
+  dataConnectorTypeMapping:
+    - dataConnectorName: azure_cosmos
+      dataConnectorObjectType: Test
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: Test
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - id
+          - level1
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: TestBoolExp
+  operand:
+    object:
+      type: Test
+      comparableFields:
+        - fieldName: id
+          booleanExpressionType: StringBoolExp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: TestBoolExp
+
+---
+kind: Model
+version: v1
+definition:
+  name: Test
+  objectType: Test
+  source:
+    dataConnectorName: azure_cosmos
+    collection: Test
+  filterExpressionType: TestBoolExp
+  orderableFields:
+    - fieldName: id
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: test
+    selectUniques: []
+    orderByExpressionType: TestOrderBy
+    filterInputTypeName: TestFilterInput
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: Test
+  permissions:
+    - role: admin
+      select:
+        filter: null
+
